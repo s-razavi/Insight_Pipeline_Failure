@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Pipeline failure prediction</title>
+
+  <!-- Custom fonts for this theme -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../static/css/freelancer.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">PIPEML</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Masthead -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+      <h1 class="masthead-heading text-uppercase mb-0">Use OUR NLP tool </h1>
+      <h1 class="masthead-heading text-lowercase mb-0"> and Avoid Failures! </h1>
+      <!-- Masthead Avatar Image -->
+      <!--img class="masthead-avatar mb-5" src="../static/img/pipeline gas explosion.jpg" width="240" height="202" alt=""-->
+
+      <!-- Masthead Heading -->
+    
+      <!-- Masthead Subheading -->
+      <!--p class="masthead-subheading font-weight-light mb-0">The model learned from 20 years historical failures, it does not predict when, but how based on text mining of US regulators documents!</p-->
+
+    </div>
+  </header>
+  <!-- Try Section -->
+    <section class="bg-primary mb-0" id="try">
+      <div class="container">
+        <h4 class="text-center text-black">Please write down the technical aspects of the upcoming project in few sentences.</h4>
+        <!--hr class="star-light mb-5"-->
+              <div class="col-sm m-3 text-center">
+                    <form action="/output" method="GET" id="user_input">
+                          <input class="form-control" type="text" id="user_input" name='user_input' placeholder="e.g. corrosion in high temperature stainless steel tank containing ...">
+                    </form>
+              </div> 
+       <div class="row justify-content-center">
+             <button type="submit" class="btn btn-secondary btn-lg" 
+form="user_input">Predict</button>
+      </div>
+      
+      {% if my_form_result=='Empty' %}
+      <div class="row mt-4 justify-content-center">
+            <h4 class="text-danger text-center text">Please provide more details</h4>
+            
+            <h5 class="text-center text-black"> </h5>
+
+      </div>
+      
+      
+      {% elif my_form_result=='no_match' %}
+      <div class="row mt-4 justify-content-center">
+            <h4 class="text-danger text-center text">More technical specifications needed for the model to predict accurately, for example:</h4>
+            
+            <h5 class="text-center text-black">The pipline is to made offshore near county of Wellington in Texas for seasonal transferring of refined intermediate-grade crude oil with ph of neutral, operating at ambient temperature and a high pressure. The system has be overground and special coating might not needed to protect the corrosion. We look to use XL60 grade steels for the pipes and XL80 grade for valves. The area could be floaded time to time and the ground is could get soft and unstable because of that particularly in winter times. No forest or agricultural works nearby thought lakes are nearby. </h5>
+
+      </div>
+          
+
+      {% elif my_form_result=='NotEmpty' %}    
+      
+      <div>
+      
+       <h4 class="row mt-4 justify-content-center"><b>{{my_number}}<b><br>  </br>The succeful companies in similar projects and their current operating mileage are:</h4>
+                          </li>
+                           
+                        
+                            <div>
+      
+                             {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %} 
+</h4>
+</div>
+
+      <div class="row mt-4 justify-content-center">
+            <h4 class="text-black text-center text-lowecase">Based on the input fed to the NLP model, These companies are not recommended for the project you described:</h4>
+      </div>
+      <div class="row p-1 m-1 justify-content-center">
+            <div class="col-md- w-120 list-group">
+                   <!--ul class="list-group"-->
+                   <h4 class="text-center">
+                   <li class="text-red text-center text-uppercase">
+                             <b>{{my_input}}</b>
+                            
+                            <div 
+                                <li class="text-red text-center text-uppercase">
+                             <br>                 </br>
+                                 </li>
+                            </div>
+                             
+                           
+                             </div>
+                  </ul>
+            </div>
+            <!--div class="col"-->
+            <!--img src="../static/img/struggle.jpg" alt="" width=500 height=416-->
+            </div>      
+      </div>
+  
+
+      {% else %}
+      {% endif %}      
+      </div>
+    </section>
+
+  
+  <!-- About Section -->
+  <section class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container">
+
+      <!-- About Section Heading -->
+      <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- About Section Content -->
+      <div class="row">
+        <div class="col-lg-4 ml-auto">
+          <p class="lead">PipeML is tool designed to help financial lenders and pipeline industry to avoid catasterophic pipeline failures</p>
+        </div>
+        <div class="col-lg-4 mr-auto">
+          <p class="lead">We provide tools that direct you on top performing and poor performing companies depending on specific project details to avoid loss and contamintation.</p>
+        </div>
+      </div>
+
+
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../static/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="../static/js/jqBootstrapValidation.js"></script>
+  <script src="../static/js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="../static/js/freelancer.min.js"></script>
+
+</body>
+
+</html>
